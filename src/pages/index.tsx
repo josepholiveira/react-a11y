@@ -1,5 +1,8 @@
+import * as Dialog from '@radix-ui/react-dialog';
+
 import Image from 'next/future/image'
 import Head from 'next/head'
+
 
 import LogoImg from '../assets/logo.svg'
 
@@ -43,9 +46,27 @@ export default function Home() {
         <Image src={LogoImg} width={286 / 2} alt="Blog da Rocketseat" />
 
         <nav className={styles.nav} aria-label="Rodapé">
-          <a href="https://github.com/josepholiveira">
-            Termos de uso
-          </a>
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <button type="button">
+                Termos de uso
+              </button>
+            </Dialog.Trigger>
+            <Dialog.Portal>
+              <Dialog.Overlay className={styles.overlay} />
+
+              <Dialog.Content className={styles.modal}>
+                <Dialog.Title>Termos de uso</Dialog.Title>
+                <Dialog.Description>Esses são os termos de uso</Dialog.Description>
+                <Dialog.Close asChild>
+                  <button className={styles.closeModalButton}>
+                    Fechar
+                  </button>
+                </Dialog.Close>
+              </Dialog.Content>
+            </Dialog.Portal>
+            
+          </Dialog.Root>
         </nav>
       </footer>
     </>
